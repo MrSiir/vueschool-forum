@@ -1,24 +1,7 @@
-# vueschool-forum
+# Vue School Forum Demo App
 
-## Project setup
-```
-yarn install
-```
+## The Vue.js 3 Masterclass
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+Learn how to build a real-world application with Vue.js 3 in the supercharged and remastered Vue.js Masterclass.
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+https://vueschool.io/courses/the-vuejs-3-master-class
