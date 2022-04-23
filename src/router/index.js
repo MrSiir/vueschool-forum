@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView'
-import ThreadView from '@/views/ThreadView'
-import NotFound from '@/views/NotFound'
+import Home from '@/pages/Home'
+import ThreadShow from '@/pages/ThreadShow'
+import NotFound from '@/pages/NotFound'
 
 import sourceData from '@/data.json'
 
@@ -9,12 +9,13 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: HomeView
+    component: Home
   },
   {
     path: '/thread/:id',
     name: 'Thread',
-    component: ThreadView,
+    component: ThreadShow,
+    props: true,
     beforeEnter: (to, from, next) => {
       // prettier-ignore
       return sourceData.threads.find((thread) => thread.id === to.params.id)

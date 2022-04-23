@@ -1,59 +1,41 @@
 <template>
-  <div class="col-large push-top">
-    <h1>{{ thread.title }}</h1>
-    <div class="post-list">
-      <div v-for="postId in thread.posts" :key="postId" class="post">
-        <div class="user-info">
-          <a href="#" class="user-name">{{
-            userById(postById(postId).userId).name
-          }}</a>
-          <a href="#">
-            <img
-              class="avatar-large"
-              :src="userById(postById(postId).userId).avatar"
-            />
-          </a>
-          <a class="desktop-only text-small">107 posts</a>
+  <div class="post-list">
+    <div v-for="post in posts" :key="post.id" class="post">
+      <div class="user-info">
+        <a href="#" class="user-name">{{ userById(post.userId).name }}</a>
+        <a href="#">
+          <img class="avatar-large" :src="userById(post.userId).avatar" />
+        </a>
+        <a class="desktop-only text-small">107 posts</a>
+      </div>
+      <div class="post-content">
+        <div>
+          <p>{{ post.text }}</p>
         </div>
-        <div class="post-content">
-          <div>
-            <p>{{ postById(postId).text }}</p>
-          </div>
-        </div>
-        <div class="post-date text-faded">
-          {{ postById(postId).publishedAt }}
-        </div>
+      </div>
+      <div class="post-date text-faded">
+        {{ post.publishedAt }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
 import sourceData from '@/data.json'
 
 export default {
   props: {
-    id: {
+    posts: {
       required: true,
-      type: String
+      type: Array
     }
   },
-  setup(props) {
-    const threads = sourceData.threads
-    const posts = sourceData.posts
+  setup() {
     const users = sourceData.users
-
-    const thread = computed(() => threads.find((t) => t.id === props.id))
-
-    const postById = (postId) => posts.find((p) => p.id === postId)
 
     const userById = (userId) => users.find((u) => u.id === userId)
 
     return {
-      thread,
-      threads,
-      postById,
       userById
     }
   }

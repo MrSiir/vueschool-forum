@@ -1,9 +1,14 @@
 <template>
-  <div>
-    <img alt="Vue logo" src="@/assets/logo.png" />
+  <div class="container">
+    <router-view />
   </div>
-  <router-view />
 </template>
+
+<script>
+export default {
+  name: 'App'
+}
+</script>
 
 <style>
 @import '@/assets/styles.css';
