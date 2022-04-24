@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '@/store'
 import Home from '@/pages/Home'
 import ThreadShow from '@/pages/ThreadShow'
 import NotFound from '@/pages/NotFound'
 import Forum from '@/pages/Forum'
 import Category from '@/pages/Category'
-
-import sourceData from '@/data.json'
 
 const routes = [
   {
@@ -20,7 +19,7 @@ const routes = [
     props: true,
     beforeEnter: (to, from, next) => {
       // prettier-ignore
-      return sourceData.threads.find((thread) => thread.id === to.params.id)
+      return store.state.threads.find((thread) => thread.id === to.params.id)
         ? next()
         : next({
           name: 'NotFound',

@@ -13,16 +13,18 @@
 
 <script>
 import { computed, ref } from 'vue'
-import sourceData from '@/data.json'
+import { useStore } from 'vuex'
 
 export default {
   name: 'PostEditor',
   emits: ['save'],
   setup(props, { emit }) {
-    const threads = sourceData.threads
-    const posts = ref(sourceData.posts)
+    const { state } = useStore()
 
-    const thread = computed(() => threads.find((t) => t.id === props.id))
+    const threads = ref(state.threads)
+    const posts = ref(state.posts)
+
+    const thread = computed(() => threads.value.find((t) => t.id === props.id))
 
     const threadPosts = computed(() =>
       posts.value.filter((p) => p.threadId === props.id)
@@ -32,9 +34,8 @@ export default {
 
     const save = () => {
       const post = {
-        id: 'xxxxx' + Math.random(),
         text: text.value,
-        publishedAd: Math.floor(Date.now() / 1000),
+        publishedAt: Math.floor(Date.now() / 1000),
         userId: 'rpbB8C6ifrYmNDufMERWfQUoa202'
       }
 

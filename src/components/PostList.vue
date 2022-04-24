@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import sourceData from '@/data.json'
+import { useStore } from 'vuex'
 
 export default {
   props: {
@@ -31,9 +31,9 @@ export default {
     }
   },
   setup() {
-    const users = sourceData.users
+    const { state } = useStore()
 
-    const userById = (userId) => users.find((u) => u.id === userId)
+    const userById = (userId) => state.users.find((u) => u.id === userId)
 
     return {
       userById

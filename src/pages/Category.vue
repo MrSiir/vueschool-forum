@@ -5,7 +5,7 @@
 
 <script>
 import { computed } from 'vue'
-import sourceData from '@/data.json'
+import { useStore } from 'vuex'
 import ForumList from '@/components/ForumList'
 
 export default {
@@ -19,12 +19,14 @@ export default {
     }
   },
   setup(props) {
+    const { state } = useStore()
+
     const category = computed(() =>
-      sourceData.categories.find((c) => c.id === props.id)
+      state.categories.find((c) => c.id === props.id)
     )
 
     const getForumsForCategory = (category) =>
-      sourceData.forums.filter((f) => f.categoryId === category.id)
+      state.forums.filter((f) => f.categoryId === category.id)
 
     return {
       category,

@@ -5,8 +5,8 @@ import store from './store'
 
 const forumApp = createApp(App)
 
-forumApp.use(store)
 forumApp.use(router)
+forumApp.use(store)
 
 const requireComponent = require.context(
   './components',

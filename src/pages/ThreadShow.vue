@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue'
-import sourceData from '@/data.json'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 import PostList from '@/components/PostList'
 import PostEditor from '@/components/PostEditor'
 
@@ -25,13 +25,12 @@ export default {
     }
   },
   setup(props) {
-    const threads = sourceData.threads
-    const posts = ref(sourceData.posts)
+    const { state, dispatch } = useStore()
 
-    const thread = computed(() => threads.find((t) => t.id === props.id))
+    const thread = computed(() => state.threads.find((t) => t.id === props.id))
 
     const threadPosts = computed(() =>
-      posts.value.filter((p) => p.threadId === props.id)
+      state.posts.filter((p) => p.threadId === props.id)
     )
 
     const addPost = (eventData) => {
@@ -39,13 +38,11 @@ export default {
         ...eventData.post,
         threadId: props.id
       }
-      posts.value.push(post)
-      thread.value.posts.push(post.id)
+      dispatch('createPost', post)
     }
 
     return {
       thread,
-      threads,
       threadPosts,
       addPost
     }
