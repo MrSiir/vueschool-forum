@@ -11,7 +11,7 @@
           </p>
           <p class="text-faded text-xsmall">
             By <a href="#">{{ userById(thread.userId).name }}</a
-            >, {{ thread.publishedAt }}
+            >, <app-date :timestamp="thread.publishedAt" />
           </p>
         </div>
         <div class="activity">
@@ -23,7 +23,9 @@
             <p class="text-small">
               <a href="#">{{ userById(thread.userId).name }}</a>
             </p>
-            <p class="text-xsmall text-faded">{{ thread.publishedAt }}</p>
+            <p class="text-xsmall text-faded">
+              <app-date :timestamp="thread.publishedAt" />
+            </p>
           </div>
         </div>
       </div>
@@ -56,5 +58,3 @@ export default {
   }
 }
 </script>
-
-<style></style>
